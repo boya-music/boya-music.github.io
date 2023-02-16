@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<!--
+ - File              : index.html
+ - Author            : none
+ - Date              : 06.03.2022
+ - Last Modified Date: 27.03.2022
+ - Last Modified By  : none <none>
+-->
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>LingGe: An Automatic Ancient Chinese Poem-to-Song Generation System
+    </title>
+</head>
+
+<body>
+
+    <article>
+        <header>
+            <h1>Demos for paper 《LingGe: An Automatic Ancient Chinese Poem-to-Song Generation System》</h1>
+        </header>
+    </article>
+    <hr>
+
+
+    <div>
+        <h3><b>Paper</b> </h3>
+        <div>
+            <blockquote> LingGe: An Automatic Ancient Chinese Poem-to-Song Generation System </blockquote>
+        </div>
+        <div>
+            <h3><b>Authors</b> </h3>
+            <blockquote>
+                <div>Yong Shan, Jinchao Zhang, Huiying Ren, Yao Qiu, Jie Zhou</div>
+            </blockquote>
+            <div>
+                <h3><b>Abstract</b> </h3>
+                <blockquote>
+                    <div>This paper presents a novel system (denoted as <i>LingGe</i>) to generate songs for ancient
+                        Chinese poems automatically.
+                        LingGe takes the poem as the lyric, composes music conditioned on the lyric, and finally outputs
+                        a full song including the singing and the accompaniment.
+                        It consists of four modules: rhythm recognition, melody generation, accompaniment generation,
+                        and audio synthesis.
+                        First, the rhythm recognition module analyzes the song structure and rhythm according to the
+                        poem.
+                        Second, the melody generation module assembles the rhythm into the template and then generates
+                        the melody.
+                        Third, the accompaniment generation module predicts the accompaniment in harmony with the
+                        melody.
+                        Finally, the audio synthesis module generates singing and accompaniment audio and then mixes
+                        them to obtain songs.
+                        The results show that LingGe can generate high-quality and expressive songs for ancient Chinese
+                        poems, both in harmony and rhythm.</div>
+                </blockquote>
+            </div>
+            <blockquote>
+                <img src="resource/method.png" width="800">
+            </blockquote>
+            <hr>
+            <style type="text/css">
+                .tg {
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    border-color: #ccc;
+                }
+
+                .tg td {
+                    font-family: Arial, sans-serif;
+                    font-size: 14px;
+                    padding: 10px 5px;
+                    border-style: solid;
+                    border-width: 1px;
+                    overflow: hidden;
+                    word-break: normal;
+                    border-color: #ccc;
+                    color: #333;
+                    background-color: #fff;
+                }
+
+                .tg th {
+                    font-family: Arial, sans-serif;
+                    font-size: 14px;
+                    font-weight: normal;
+                    padding: 10px 5px;
+                    border-style: solid;
+                    border-width: 1px;
+                    overflow: hidden;
+                    word-break: normal;
+                    border-color: #ccc;
+                    color: #333;
+                    background-color: #f0f0f0;
+                }
+
+                .tg .tg-9wq8 {
+                    border-color: inherit;
+                    text-align: center;
+                    vertical-align: middle
+                }
+            </style>
+
+            <h3>Song Samples</h3>
+            <blockquote>
+                <h4>卜算子·我住长江头（李之仪）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>我住长江头</rb>
+                            <rt>wǒ zhù cháng jiāng tóu</rt>
+                        </ruby>，<ruby>
+                            <rb>君住长江尾</rb>
+                            <rt>jūn zhù cháng jiāng wěi</rt>
+                        </ruby>。<ruby>
+                            <rb>日日思君不见君</rb>
+                            <rt>rì rì sī jūn bú jiàn jūn</rt>
+                        </ruby>，<ruby>
+                            <rb>共饮长江水</rb>
+                            <rt>gòng yǐn cháng jiāng shuǐ</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>此水几时休</rb>
+                            <rt>cǐ shuǐ jǐ shí xiū</rt>
+                        </ruby>，<ruby>
+                            <rb>此恨何时已</rb>
+                            <rt>cǐ hèn hé shí yǐ</rt>
+                        </ruby>。<ruby>
+                            <rb>只愿君心似我心</rb>
+                            <rt>zhǐ yuàn jūn xīn sì wǒ xīn</rt>
+                        </ruby>，<ruby>
+                            <rb>定不负相思意</rb>
+                            <rt>dìng bù fù xiāng sī yì</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        I live where the Yangtze begins,<br>
+                        You live where the Yangtze comes to its end;<br>
+                        Day after day I long for you yet I see you not,<br>
+                        Though we the Yangtze's waters share.<br>
+                        <br>
+                        When shall the waters run dry?<br>
+                        When shall this regret come to an end?<br>
+                        I only hope that your heart is like mine,<br>
+                        And disappoint not our mutual wistful affections.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/卜算子_我住长江头_4_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/卜算子_我住长江头_4_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>虞美人·春花秋月何时了（李煜）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>春花秋月何时了</rb>
+                            <rt>chūn huā qiū yuè hé shí liáo</rt>
+                        </ruby>，<ruby>
+                            <rb>往事知多少</rb>
+                            <rt>wǎng shì zhī duō shǎo</rt>
+                        </ruby>。<ruby>
+                            <rb>小楼昨夜又东风</rb>
+                            <rt>xiǎo lóu zuó yè yòu dōng fēng</rt>
+                        </ruby>，<ruby>
+                            <rb>故国不堪回首月明中</rb>
+                            <rt>gù guó bù kān huí shǒu yuè míng zhōng</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>雕栏玉砌应犹在</rb>
+                            <rt>diāo lán yù qì yīng yóu zài</rt>
+                        </ruby>，<ruby>
+                            <rb>只是朱颜改</rb>
+                            <rt>zhǐ shì zhū yán gǎi</rt>
+                        </ruby>。<ruby>
+                            <rb>问君能有几多愁</rb>
+                            <rt>wèn jūn néng yǒu jǐ duō chóu</rt>
+                        </ruby>，<ruby>
+                            <rb>恰似一江春水向东流</rb>
+                            <rt>qià sì yī jiāng chūn shuǐ xiàng dōng liú</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        When will there be no more autumn moon and spring flowers<br>
+                        For me who had so many memorable hours?<br>
+                        The east wind blew again in my garden last night.<br>
+                        How can I bear the cruel memory of bowers<br>
+                        And palaces steeped in moonlight!<br><br>
+                        Carved balustrades and marble steps must still be there,<br>
+                        But rosy faces cannot be as fair.<br>
+                        If you ask me how much my sorrow has increased,<br>
+                        Just see the over brimming river flowing east!
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/虞美人_春花秋月何时了_3_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/虞美人_春花秋月何时了_3_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>水调歌头·明月几时有（苏轼）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>明月几时有</rb>
+                            <rt>míng yuè jǐ shí yǒu</rt>
+                        </ruby>，<ruby>
+                            <rb>把酒问青天</rb>
+                            <rt>bǎ jiǔ wèn qīng tiān</rt>
+                        </ruby>。<ruby>
+                            <rb>不知天上宫阙</rb>
+                            <rt>bù zhī tiān shàng gōng què</rt>
+                        </ruby>，<ruby>
+                            <rb>今夕是何年</rb>
+                            <rt>jīn xī shì hé nián</rt>
+                        </ruby>。<ruby>
+                            <rb>我欲乘风归去</rb>
+                            <rt>wǒ yù chéng fēng guī qù</rt>
+                        </ruby>，<ruby>
+                            <rb>又恐琼楼玉宇</rb>
+                            <rt>yòu kǒng qióng lóu yù yǔ</rt>
+                        </ruby>，<ruby>
+                            <rb>高处不胜寒</rb>
+                            <rt>gāo chù bù shèng hán</rt>
+                        </ruby>。<ruby>
+                            <rb>起舞弄清影</rb>
+                            <rt>qǐ wǔ nòng qīng yǐng</rt>
+                        </ruby>，<ruby>
+                            <rb>何似在人间</rb>
+                            <rt>hé sì zài rén jiān</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>转朱阁低绮户</rb>
+                            <rt>zhuǎn zhū gé dī qǐ hù</rt>
+                        </ruby>，<ruby>
+                            <rb>照无眠</rb>
+                            <rt>zhào wú mián</rt>
+                        </ruby>。<ruby>
+                            <rb>不应有恨</rb>
+                            <rt>bù yīng yǒu hèn</rt>
+                        </ruby>，<ruby>
+                            <rb>何事长向别时圆</rb>
+                            <rt>hé shì cháng xiàng bié shí yuán</rt>
+                        </ruby>。<ruby>
+                            <rb>人有悲欢离合</rb>
+                            <rt>rén yǒu bēi huān lí hé</rt>
+                        </ruby>，<ruby>
+                            <rb>月有阴晴圆缺</rb>
+                            <rt>yuè yǒu yīn qíng yuán quē</rt>
+                        </ruby>，<ruby>
+                            <rb>此事古难全</rb>
+                            <rt>cǐ shì gǔ nán quán</rt>
+                        </ruby>。<ruby>
+                            <rb>但愿人长久</rb>
+                            <rt>dàn yuàn rén cháng jiǔ</rt>
+                        </ruby>，<ruby>
+                            <rb>千里共婵娟</rb>
+                            <rt>qiān lǐ gòng chán juān</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        When did the bright moon come to be?<br>
+                        I raise my drink to ask the azure sky.<br>
+                        I wonder about the palace and edifices in heaven,<br>
+                        What year of which age do they go by tonight?<br>
+                        I'd like to ride the wind to there visit and return,<br>
+                        Yet I fear where such grand and fine architecture is<br>
+                        Must be unbearably cold because of its height.<br>
+                        So I turn to dance among distinct light and shade,<br>
+                        How it must appear beyond the promise of earthly delights.<br>
+                        <br>
+                        Soon the moon glides behind the red high-rise,<br>
+                        And through the decorated window of the wakeful it shines.<br>
+                        I know I shouldn't agonise over it,<br>
+                        Yet why does the moon always fuller seem at parting times?<br>
+                        Life is full of happy reunions and parting sorrows,<br>
+                        And the moon waxes and wanes in size.<br>
+                        Nothing is ever perfect since the beginning of time.<br>
+                        May we continue to survive life,<br>
+                        So that we could the moon's loveliness share when separated by thousands of miles.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/水调歌头_明月几时有_6_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/水调歌头_明月几时有_6_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>念奴娇·赤壁怀古（苏轼）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>大江东去</rb>
+                            <rt>dà jiāng dōng qù</rt>
+                        </ruby>，<ruby>
+                            <rb>浪淘尽</rb>
+                            <rt>làng táo jǐn</rt>
+                        </ruby>，<ruby>
+                            <rb>千古风流人物</rb>
+                            <rt>qiān gǔ fēng liú rén wù</rt>
+                        </ruby>。<ruby>
+                            <rb>故垒西边</rb>
+                            <rt>gù lěi xī biān</rt>
+                        </ruby>，<ruby>
+                            <rb>人道是</rb>
+                            <rt>rén dào shì</rt>
+                        </ruby>，<ruby>
+                            <rb>三国周郎赤壁</rb>
+                            <rt>sān guó zhōu láng chì bì</rt>
+                        </ruby>。<ruby>
+                            <rb>乱石穿空</rb>
+                            <rt>luàn shí chuān kōng</rt>
+                        </ruby>，<ruby>
+                            <rb>惊涛拍岸</rb>
+                            <rt>jīng tāo pāi àn</rt>
+                        </ruby>，<ruby>
+                            <rb>卷起千堆雪</rb>
+                            <rt>juǎn qǐ qiān duī xuě</rt>
+                        </ruby>。<ruby>
+                            <rb>江山如画</rb>
+                            <rt>jiāng shān rú huà</rt>
+                        </ruby>，<ruby>
+                            <rb>一时多少豪杰</rb>
+                            <rt>yī shí duō shǎo háo jié</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>遥想公瑾当年</rb>
+                            <rt>yáo xiǎng gōng jǐn dāng nián</rt>
+                        </ruby>，<ruby>
+                            <rb>小乔初嫁了</rb>
+                            <rt>xiǎo qiáo chū jià liáo</rt>
+                        </ruby>，<ruby>
+                            <rb>雄姿英发</rb>
+                            <rt>xióng zī yīng fā</rt>
+                        </ruby>。<ruby>
+                            <rb>羽扇纶巾</rb>
+                            <rt>yǔ shàn guān jīn</rt>
+                        </ruby>，<ruby>
+                            <rb>谈笑间</rb>
+                            <rt>tán xiào jiān</rt>
+                        </ruby>，<ruby>
+                            <rb>樯橹灰飞烟灭</rb>
+                            <rt>qiáng lǔ huī fēi yān miè</rt>
+                        </ruby>。<ruby>
+                            <rb>故国神游</rb>
+                            <rt>gù guó shén yóu</rt>
+                        </ruby>，<ruby>
+                            <rb>多情应笑我</rb>
+                            <rt>duō qíng yīng xiào wǒ</rt>
+                        </ruby>，<ruby>
+                            <rb>早生华发</rb>
+                            <rt>zǎo shēng huá fà</rt>
+                        </ruby>。<ruby>
+                            <rb>人生如梦</rb>
+                            <rt>rén shēng rú mèng</rt>
+                        </ruby>，<ruby>
+                            <rb>一尊还酹江月</rb>
+                            <rt>yī zūn huán lèi jiāng yuè</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        The great gushing Yangtze with piling waves flows towards the east,<br>
+                        Away it carries gallant souls of the remote bygone days.<br>
+                        The ancient fort on the west is said to be<br>
+                        The Crimson Cliff, where Zhou of the Three Kingdoms era Wei's navy defeated.<br>
+                        Stones were hurled into the sky indiscriminatingly,<br>
+                        Mighty waves must have crushed onto shores hurling high snow-like foam.<br>
+                        The river and mountains today's landscapes paint,<br>
+                        Where once there were many courageous and heroic men.<br>
+                        <br>
+                        Picture Zhou in his prime,<br>
+                        Dressed in plain clothes together with his young bride, gallant he must have been.<br>
+                        Topped with a silk crest, he held in his hand a fan of feathers,<br>
+                        With humour he helped see to<br>
+                        That the masts and sculls of Wei's navy go up in smoke and ashes turn into.<br>
+                        My mind wanders in the history vested hither,<br>
+                        My sentimentality no doubt has caused my early grey.<br>
+                        Life is a dream,<br>
+                        Allow me to libate a drink to the river, the moon and its reflection.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/念奴娇_赤壁怀古_5_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/念奴娇_赤壁怀古_5_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>虞美人·听雨（蒋捷）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>少年听雨歌楼上</rb>
+                            <rt>shào nián tīng yǔ gē lóu shàng</rt>
+                        </ruby>，<ruby>
+                            <rb>红烛昏罗帐</rb>
+                            <rt>hóng zhú hūn luó zhàng</rt>
+                        </ruby>。<ruby>
+                            <rb>壮年听雨客舟中</rb>
+                            <rt>zhuàng nián tīng yǔ kè zhōu zhōng</rt>
+                        </ruby>，<ruby>
+                            <rb>江阔云低</rb>
+                            <rt>jiāng kuò yún dī</rt>
+                        </ruby>，<ruby>
+                            <rb>断雁叫西风</rb>
+                            <rt>duàn yàn jiào xī fēng</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>而今听雨僧庐下</rb>
+                            <rt>ér jīn tīng yǔ sēng lú xià</rt>
+                        </ruby>，<ruby>
+                            <rb>鬓已星星也</rb>
+                            <rt>bìn yǐ xīng xīng yě</rt>
+                        </ruby>。<ruby>
+                            <rb>悲欢离合总无情</rb>
+                            <rt>bēi huān lí hé zǒng wú qíng</rt>
+                        </ruby>，<ruby>
+                            <rb>一任阶前</rb>
+                            <rt>yī rèn jiē qián</rt>
+                        </ruby>，<ruby>
+                            <rb>点滴到天明</rb>
+                            <rt>diǎn dī dào tiān míng</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        In my youth I listened to the rain in houses where singing pervaded,<br>
+                        Surrounded by bed curtains that candlelight veiled.<br>
+                        In my prime I listened to the rain as I travelled by boat,<br>
+                        The river was vast and clouds low, in westerlies trilled wild geese lost on their way.<br>
+                        <br>
+                        These days I listen to the rain in the hut of a monk,<br>
+                        My sideburns have turned sparkling grey.<br>
+                        Ever so relentless are the joy of coming together and parting sorrows that follow,<br>
+                        Here I am taking heed of the rain dribbling on the stairs as a new day breaks.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/虞美人_听雨_1_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/虞美人_听雨_1_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>丑奴儿·书博山道中壁（辛弃疾）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>少年不识愁滋味</rb>
+                            <rt>shào nián bù shí chóu zī wèi</rt>
+                        </ruby>，<ruby>
+                            <rb>爱上层楼</rb>
+                            <rt>ài shàng céng lóu</rt>
+                        </ruby>。<ruby>
+                            <rb>爱上层楼</rb>
+                            <rt>ài shàng céng lóu</rt>
+                        </ruby>，<ruby>
+                            <rb>为赋新词强说愁</rb>
+                            <rt>wèi fù xīn cí qiáng shuō chóu</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>而今识尽愁滋味</rb>
+                            <rt>ér jīn shí jǐn chóu zī wèi</rt>
+                        </ruby>，<ruby>
+                            <rb>欲说还休</rb>
+                            <rt>yù shuō huàn xiū</rt>
+                        </ruby>。<ruby>
+                            <rb>欲说还休</rb>
+                            <rt>yù shuō huàn xiū</rt>
+                        </ruby>，<ruby>
+                            <rb>却道天凉好个秋</rb>
+                            <rt>què dào tiān liáng hǎo gè qiū</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        In my younger days, I had tasted only gladness,<br>
+                        But loved to mount the top floor,<br>
+                        But loved to mount the top floor,<br>
+                        To write a song pretending sadness,<br>
+                        <br>
+                        And now I’ve tasted Sorrow’s flavors, bitter and sour,<br>
+                        And can’t find a word,<br>
+                        And can’t find a word,<br>
+                        But merely say，“what a golden autumn hour！”<br>
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/丑奴儿_书博山道中壁_8_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/丑奴儿_书博山道中壁_8_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>青玉案·元夕（辛弃疾）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>东风夜放花千树</rb>
+                            <rt>dōng fēng yè fàng huā qiān shù</rt>
+                        </ruby>，<ruby>
+                            <rb>更吹落星如雨</rb>
+                            <rt>gèng chuī luò xīng rú yǔ</rt>
+                        </ruby>。<ruby>
+                            <rb>宝马雕车香满路</rb>
+                            <rt>bǎo mǎ diāo chē xiāng mǎn lù</rt>
+                        </ruby>。<ruby>
+                            <rb>凤箫声动</rb>
+                            <rt>fèng xiāo shēng dòng</rt>
+                        </ruby>，<ruby>
+                            <rb>玉壶光转</rb>
+                            <rt>yù hú guāng zhuǎn</rt>
+                        </ruby>，<ruby>
+                            <rb>一夜鱼龙舞</rb>
+                            <rt>yī yè yú lóng wǔ</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>蛾儿雪柳黄金缕</rb>
+                            <rt>é ér xuě liǔ huáng jīn lǚ</rt>
+                        </ruby>，<ruby>
+                            <rb>笑语盈盈暗香去</rb>
+                            <rt>xiào yǔ yíng yíng àn xiāng qù</rt>
+                        </ruby>。<ruby>
+                            <rb>众里寻他千百度</rb>
+                            <rt>zhòng lǐ xún tā qiān bǎi dù</rt>
+                        </ruby>。<ruby>
+                            <rb>蓦然回首</rb>
+                            <rt>mò rán huí shǒu</rt>
+                        </ruby>，<ruby>
+                            <rb>那人却在</rb>
+                            <rt>nà rén què zài</rt>
+                        </ruby>，<ruby>
+                            <rb>灯火阑珊处</rb>
+                            <rt>dēng huǒ lán shān chù</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        Easterlies of the night call to bloom blossoms of a thousand trees,<br>
+                        As if blowing adrift stars that drizzle like rain.<br>
+                        Precious horses and lavish carriages go by leaving a scented trail.<br>
+                        Phoenix flutes music perform as the timekeeper witnesses the turning of hours,<br>
+                        Throughout the night lanterns in the shape of fish and dragons dance and gyrate.<br>
+                        <br>
+                        Golden are the willowy tassels of her butterfly hairpin,<br>
+                        Among giggles and chatters her scent is fading away.<br>
+                        In the crowd I look for her presence everywhere time and again,<br>
+                        Suddenly I turn around, and I see her there,<br>
+                        Where lights are dim and faint.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/青玉案_元夕_5_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/青玉案_元夕_5_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>江城子·十年生死两茫茫（苏轼）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>十年生死两茫茫</rb>
+                            <rt>shí nián shēng sǐ liǎng máng máng</rt>
+                        </ruby>，<ruby>
+                            <rb>不思量</rb>
+                            <rt>bù sī liáng</rt>
+                        </ruby>，<ruby>
+                            <rb>自难忘</rb>
+                            <rt>zì nán wàng</rt>
+                        </ruby>。<ruby>
+                            <rb>千里孤坟</rb>
+                            <rt>qiān lǐ gū fén</rt>
+                        </ruby>，<ruby>
+                            <rb>无处话凄凉</rb>
+                            <rt>wú chǔ huà qī liáng</rt>
+                        </ruby>。<ruby>
+                            <rb>纵使相逢应不识</rb>
+                            <rt>zòng shǐ xiāng féng yīng bù shí</rt>
+                        </ruby>，<ruby>
+                            <rb>尘满面</rb>
+                            <rt>chén mǎn miàn</rt>
+                        </ruby>，<ruby>
+                            <rb>鬓如霜</rb>
+                            <rt>bìn rú shuāng</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>夜来幽梦忽还乡</rb>
+                            <rt>yè lái yōu mèng hū huán xiāng</rt>
+                        </ruby>，<ruby>
+                            <rb>小轩窗</rb>
+                            <rt>xiǎo xuān chuāng</rt>
+                        </ruby>，<ruby>
+                            <rb>正梳妆</rb>
+                            <rt>zhèng shū zhuāng</rt>
+                        </ruby>。<ruby>
+                            <rb>相顾无言</rb>
+                            <rt>xiāng gù wú yán</rt>
+                        </ruby>，<ruby>
+                            <rb>惟有泪千行</rb>
+                            <rt>wéi yǒu lèi qiān háng</rt>
+                        </ruby>。<ruby>
+                            <rb>料得年年肠断处</rb>
+                            <rt>liào dé nián nián cháng duàn chù</rt>
+                        </ruby>，<ruby>
+                            <rb>明月夜</rb>
+                            <rt>míng yuè yè</rt>
+                        </ruby>，<ruby>
+                            <rb>短松冈</rb>
+                            <rt>duǎn sōng gāng</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        Ten years of separation by the immeasurable distance between life and death<br>
+                        Is not something I'd like to think about, yet unforgettable it is already.<br>
+                        A thousands miles away is your lonely grave,<br>
+                        I've nowhere to visit and my grief express.<br>
+                        Even if we could meet, we probably wouldn't each other recognise,<br>
+                        For my faces has aged and my sideburns greyed as I have life's hardship sustained.<br>
+                        <br>
+                        Last night out of the blue I dreamt of homecoming,<br>
+                        And there you were, putting on make-up after combing your hair.<br>
+                        Our eyes meet yet reticent we remained,<br>
+                        Yet rolling down our cheeks are tears forming far too many trails.<br>
+                        Then I realise we are where I'd visit year after year when my heart aches,<br>
+                        On a night with a bright moon, on the hillock, among the pine saplings I'd stay.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/江城子_十年生死两茫茫_3_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/江城子_十年生死两茫茫_3_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>临江仙·滚滚长江东逝水（杨慎）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>滚滚长江东逝水</rb>
+                            <rt>gǔn gǔn cháng jiāng dōng shì shuǐ</rt>
+                        </ruby>，<ruby>
+                            <rb>浪花淘尽英雄</rb>
+                            <rt>làng huā táo jǐn yīng xióng</rt>
+                        </ruby>。<ruby>
+                            <rb>是非成败转头空</rb>
+                            <rt>shì fēi chéng bài zhuǎn tóu kōng</rt>
+                        </ruby>。<ruby>
+                            <rb>青山依旧在</rb>
+                            <rt>qīng shān yī jiù zài</rt>
+                        </ruby>，<ruby>
+                            <rb>几度夕阳红</rb>
+                            <rt>jǐ dù xī yáng hóng</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>白发渔樵江渚上</rb>
+                            <rt>bái fà yú qiáo jiāng zhǔ shàng</rt>
+                        </ruby>，<ruby>
+                            <rb>惯看秋月春风</rb>
+                            <rt>guàn kàn qiū yuè chūn fēng</rt>
+                        </ruby>。<ruby>
+                            <rb>一壶浊酒喜相逢</rb>
+                            <rt>yī hú zhuó jiǔ xǐ xiāng féng</rt>
+                        </ruby>。<ruby>
+                            <rb>古今多少事</rb>
+                            <rt>gǔ jīn duō shǎo shì</rt>
+                        </ruby>，<ruby>
+                            <rb>都付笑谈中</rb>
+                            <rt>dōu fù xiào tán zhōng</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        Wave on wave the long river eastward rolls away;<br>
+
+                        Gone are all heroes with its spray on spray.<br>
+
+                        Success or failure, right or wrong, all turn out vain;<br>
+
+                        Only green mountains still remain<br>
+
+                        To see the setting sun’s departing ray.<br>
+                        <br>
+
+
+                        The white-haired fishermen sail on the stream with ease,<br>
+
+                        Accustomed to the autumn moon and vernal breeze.<br>
+
+                        A pot of wine in hand, they talk as they please.<br>
+
+                        How many things before and after<br>
+
+                        All melt into gossip and laughter!
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/临江仙_滚滚长江东逝水_8_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/临江仙_滚滚长江东逝水_8_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>醉花阴·薄雾浓云愁永昼（李清照）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>薄雾浓云愁永昼</rb>
+                            <rt>bó wù nóng yún chóu yǒng zhòu</rt>
+                        </ruby>，<ruby>
+                            <rb>瑞脑销金兽</rb>
+                            <rt>ruì nǎo xiāo jīn shòu</rt>
+                        </ruby>。<ruby>
+                            <rb>佳节又重阳</rb>
+                            <rt>jiā jié yòu chóng yáng</rt>
+                        </ruby>，<ruby>
+                            <rb>玉枕纱厨</rb>
+                            <rt>yù zhěn shā chú</rt>
+                        </ruby>，<ruby>
+                            <rb>半夜凉初透</rb>
+                            <rt>bàn yè liáng chū tòu</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>东篱把酒黄昏后</rb>
+                            <rt>dōng lí bǎ jiǔ huáng hūn hòu</rt>
+                        </ruby>，<ruby>
+                            <rb>有暗香盈袖</rb>
+                            <rt>yǒu àn xiāng yíng xiù</rt>
+                        </ruby>。<ruby>
+                            <rb>莫道不销魂</rb>
+                            <rt>mò dào bù xiāo hún</rt>
+                        </ruby>，<ruby>
+                            <rb>帘卷西风</rb>
+                            <rt>lián juǎn xī fēng</rt>
+                        </ruby>，<ruby>
+                            <rb>人比黄花瘦</rb>
+                            <rt>rén bǐ huáng huā shòu</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        A light mist and dense clouds shroud a long day in melancholy,<br>
+                        The fragrance of an exquisite essence scatters from the gilded beast-shaped burner.<br>
+                        Come again has the season of the Double Ninth,<br>
+                        Through the silk drapes and the embroidered pillow<br>
+                        Chilliness begins to penetrate in the middle of the night.<br>
+                        <br>
+                        I sip at my wine by the east fence past the twilight,<br>
+                        I chrysanthemums and their subtle scent keep in my sleeves.<br>
+                        How could anyone not agree that this is soul lifting?<br>
+                        Yet when a westerly raises the screen,<br>
+                        I realise I have withered thinner than those yellow petals and leaves.
+
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/醉花阴_薄雾浓云愁永昼_3_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/醉花阴_薄雾浓云愁永昼_3_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>卜算子·咏梅（陆游）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>驿外断桥边</rb>
+                            <rt>yì wài duàn qiáo biān</rt>
+                        </ruby>，<ruby>
+                            <rb>寂寞开无主</rb>
+                            <rt>jì mò kāi wú zhǔ</rt>
+                        </ruby>。<ruby>
+                            <rb>已是黄昏独自愁</rb>
+                            <rt>yǐ shì huáng hūn dú zì chóu</rt>
+                        </ruby>，<ruby>
+                            <rb>更着风和雨</rb>
+                            <rt>gèng zhuō fēng hé yǔ</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>无意苦争春</rb>
+                            <rt>wú yì kǔ zhēng chūn</rt>
+                        </ruby>，<ruby>
+                            <rb>一任群芳妒</rb>
+                            <rt>yī rèn qún fāng dù</rt>
+                        </ruby>。<ruby>
+                            <rb>零落成泥碾作尘</rb>
+                            <rt>líng luò chéng ní niǎn zuò chén</rt>
+                        </ruby>，<ruby>
+                            <rb>只有香如故</rb>
+                            <rt>zhǐ yǒu xiāng rú gù</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        Outside the roadhouse by the Parted Bridge,<br>
+                        In loneliness bloom wild blossoms.<br>
+                        Sunset has arrived as I dwell in melancholy in solitude.<br>
+                        Weathering wind and rain.<br>
+                        <br>
+                        I have no intention to spring hold onto,<br>
+                        I'll leave jealousy for various flowers to endure.<br>
+                        As blossoms fall to the ground and dust turn into,<br>
+                        There leaves only fragrances that doesn't change.<br>
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/卜算子_咏梅_3_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/卜算子_咏梅_3_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>浣溪沙·一曲新词酒一杯（晏殊）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>一曲新词酒一杯</rb>
+                            <rt>yī qū xīn cí jiǔ yī bēi</rt>
+                        </ruby>，<ruby>
+                            <rb>去年天气旧亭台</rb>
+                            <rt>qù nián tiān qì jiù tíng tái</rt>
+                        </ruby>。<ruby>
+                            <rb>夕阳西下几时回</rb>
+                            <rt>xī yáng xī xià jǐ shí huí</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>无可奈何花落去</rb>
+                            <rt>wú kě nài hé huā luò qù</rt>
+                        </ruby>，<ruby>
+                            <rb>似曾相识燕归来</rb>
+                            <rt>sì céng xiāng shí yàn guī lái</rt>
+                        </ruby>。<ruby>
+                            <rb>小园香径独徘徊</rb>
+                            <rt>xiǎo yuán xiāng jìng dú pái huái</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        As I new verses compose to a melody with spirits in a grail,<br>
+                        By the lagoon the terrace is the same as before in last year's weather,<br>
+                        Who could turn around the sun that has set in the west?<br>
+                        <br>
+                        Powerless are flowers that must wither and fall,<br>
+                        It's time for the return of swallows that I seem to have met before,<br>
+                        Alone I am in the garden pacing paths lined with fallen petals.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/浣溪沙_一曲新词酒一杯_1_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/浣溪沙_一曲新词酒一杯_1_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>生查子·元夕（欧阳修）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>去年元夜时</rb>
+                            <rt>qù nián yuán yè shí</rt>
+                        </ruby>，<ruby>
+                            <rb>花市灯如昼</rb>
+                            <rt>huā shì dēng rú zhòu</rt>
+                        </ruby>。<ruby>
+                            <rb>月上柳梢头</rb>
+                            <rt>yuè shàng liǔ shāo tóu</rt>
+                        </ruby>，<ruby>
+                            <rb>人约黄昏后</rb>
+                            <rt>rén yuē huáng hūn hòu</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>今年元夜时</rb>
+                            <rt>jīn nián yuán yè shí</rt>
+                        </ruby>，<ruby>
+                            <rb>月与灯依旧</rb>
+                            <rt>yuè yǔ dēng yī jiù</rt>
+                        </ruby>。<ruby>
+                            <rb>不见去年人</rb>
+                            <rt>bú jiàn qù nián rén</rt>
+                        </ruby>，<ruby>
+                            <rb>泪湿春衫袖</rb>
+                            <rt>lèi shī chūn shān xiù</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        Last year on lunar festive night,<br>
+
+                        Lanterns’ mid blooms shone as daylight.<br>
+
+                        The moon rose atop willow tree;<br>
+
+                        My lover had a tryst with me.<br>
+
+
+                        <br>
+                        This year on lunar festive night,<br>
+
+                        Moon and lanterns still shine as bright.<br>
+
+                        But where’s my lover of last year?<br>
+
+                        My sleeves are wet with tear on tear.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/生查子_元夕_3_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/生查子_元夕_3_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>蝶恋花·庭院深深深几许（冯延巳）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>庭院深深深几许</rb>
+                            <rt>tíng yuàn shēn shēn shēn jǐ xǔ</rt>
+                        </ruby>，<ruby>
+                            <rb>杨柳堆烟</rb>
+                            <rt>yáng liǔ duī yān</rt>
+                        </ruby>，<ruby>
+                            <rb>帘幕无重数</rb>
+                            <rt>lián mù wú chóng shù</rt>
+                        </ruby>。<ruby>
+                            <rb>玉勒雕鞍游冶处</rb>
+                            <rt>yù lè diāo ān yóu yě chù</rt>
+                        </ruby>，<ruby>
+                            <rb>楼高不见章台路</rb>
+                            <rt>lóu gāo bú jiàn zhāng tái lù</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>雨横风狂三月暮</rb>
+                            <rt>yǔ héng fēng kuáng sān yuè mù</rt>
+                        </ruby>，<ruby>
+                            <rb>门掩黄昏</rb>
+                            <rt>mén yǎn huáng hūn</rt>
+                        </ruby>，<ruby>
+                            <rb>无计留春住</rb>
+                            <rt>wú jì liú chūn zhù</rt>
+                        </ruby>。<ruby>
+                            <rb>泪眼问花花不语</rb>
+                            <rt>lèi yǎn wèn huā huā bù yǔ</rt>
+                        </ruby>，<ruby>
+                            <rb>乱红飞过秋千去</rb>
+                            <rt>luàn hóng fēi guò qiū qiān qù</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        Deep, deep the courtyard where he is, so deep<br>
+
+                        It’s veiled by smoke-like willows heap on heap,<br>
+
+                        By curtain on curtain and screen on screen.<br>
+
+                        Leaving his saddle and bridle, there he has been<br>
+
+                        Merry-making. From my tower he can’t be seen.<br>
+                        <br>
+                        The third month now, the wind and rain are raging late,<br>
+
+                        At dusk I bar the gate,<br>
+
+                        But I can’t bar in spring.<br>
+
+                        My tearful eyes ask flowers but they fail to bring<br>
+
+                        An answer. I see blossoms fall beyond the swing.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/蝶恋花_庭院深深深几许_1_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/蝶恋花_庭院深深深几许_1_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>鹊桥仙·纤云弄巧（秦观）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>纤云弄巧</rb>
+                            <rt>xiān yún nòng qiǎo</rt>
+                        </ruby>，<ruby>
+                            <rb>飞星传恨</rb>
+                            <rt>fēi xīng chuán hèn</rt>
+                        </ruby>，<ruby>
+                            <rb>银汉迢迢暗度</rb>
+                            <rt>yín hàn tiáo tiáo àn dù</rt>
+                        </ruby>。<ruby>
+                            <rb>金风玉露一相逢</rb>
+                            <rt>jīn fēng yù lù yī xiāng féng</rt>
+                        </ruby>，<ruby>
+                            <rb>便胜却人间无数</rb>
+                            <rt>biàn shèng què rén jiān wú shù</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>柔情似水</rb>
+                            <rt>róu qíng sì shuǐ</rt>
+                        </ruby>，<ruby>
+                            <rb>佳期如梦</rb>
+                            <rt>jiā qī rú mèng</rt>
+                        </ruby>，<ruby>
+                            <rb>忍顾鹊桥归路</rb>
+                            <rt>rěn gù què qiáo guī lù</rt>
+                        </ruby>。<ruby>
+                            <rb>两情若是久长时</rb>
+                            <rt>liǎng qíng ruò shì jiǔ cháng shí</rt>
+                        </ruby>，<ruby>
+                            <rb>又岂在朝朝暮暮</rb>
+                            <rt>yòu qǐ zài zhǎo zhǎo mù mù</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        Clouds float like works of arts, stars shoot with grief at heart. Across the Milky Way the
+                        Cowherd meets the Maid. When Autumn’s Golden Wind embraces Dew of Jade, all the love scenes on
+                        earth, however many, fade.
+                        <br>
+                        Their tender love flows like a stream; their happy date seems but a dream. How can they bear a
+                        separate homeward way? If love between both sides can last for aye, why need they stay together
+                        night and day?
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/鹊桥仙_纤云弄巧_4_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/鹊桥仙_纤云弄巧_4_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>蝶恋花·伫倚危楼风细细（柳永）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>伫倚危楼风细细</rb>
+                            <rt>zhù yǐ wēi lóu fēng xì xì</rt>
+                        </ruby>，<ruby>
+                            <rb>望极春愁</rb>
+                            <rt>wàng jí chūn chóu</rt>
+                        </ruby>，<ruby>
+                            <rb>黯黯生天际</rb>
+                            <rt>àn àn shēng tiān jì</rt>
+                        </ruby>。<ruby>
+                            <rb>草色烟光残照里</rb>
+                            <rt>cǎo sè yān guāng cán zhào lǐ</rt>
+                        </ruby>，<ruby>
+                            <rb>无言谁会凭阑意</rb>
+                            <rt>wú yán shuí huì píng lán yì</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>拟把疏狂图一醉</rb>
+                            <rt>nǐ bǎ shū kuáng tú yī zuì</rt>
+                        </ruby>，<ruby>
+                            <rb>对酒当歌</rb>
+                            <rt>duì jiǔ dāng gē</rt>
+                        </ruby>，<ruby>
+                            <rb>强乐还无味</rb>
+                            <rt>qiáng le huàn wú wèi</rt>
+                        </ruby>。<ruby>
+                            <rb>衣带渐宽终不悔</rb>
+                            <rt>yī dài jiàn kuān zhōng bù huǐ</rt>
+                        </ruby>，<ruby>
+                            <rb>为伊消得人憔悴</rb>
+                            <rt>wèi yī xiāo dé rén qiáo cuì</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        Long I stand on a high-rise in the gentle breeze,<br>
+                        Saddened is spring everywhere I see, the sky is vast yet overcast, all round is bleak.<br>
+                        In the remains of the day, in the hazy light the green of grass dims,<br>
+                        Against a rail I lean, yet who can through my quiescence my melancholy read.<br>
+                        <br>
+                        I'd rather pretend to be a giddy eccentric looking to get tipsy,<br>
+                        When there is wine, singing follows, yet bland would be such imposed recreation.<br>
+                        Becoming loose are my clothes yet I regret not,<br>
+                        For I languish and suffer for her willingly.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/蝶恋花_伫倚危楼风细细_1_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/蝶恋花_伫倚危楼风细细_1_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>苏幕遮·怀旧（范仲淹）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>碧云天</rb>
+                            <rt>bì yún tiān</rt>
+                        </ruby>，<ruby>
+                            <rb>黄叶地</rb>
+                            <rt>huáng yè dǐ</rt>
+                        </ruby>，<ruby>
+                            <rb>秋色连波</rb>
+                            <rt>qiū sè lián bō</rt>
+                        </ruby>，<ruby>
+                            <rb>波上寒烟翠</rb>
+                            <rt>bō shàng hán yān cuì</rt>
+                        </ruby>。<ruby>
+                            <rb>山映斜阳天接水</rb>
+                            <rt>shān yìng xié yáng tiān jiē shuǐ</rt>
+                        </ruby>，<ruby>
+                            <rb>芳草无情</rb>
+                            <rt>fāng cǎo wú qíng</rt>
+                        </ruby>，<ruby>
+                            <rb>更在斜阳外</rb>
+                            <rt>gèng zài xié yáng wài</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>黯乡魂</rb>
+                            <rt>àn xiāng hún</rt>
+                        </ruby>，<ruby>
+                            <rb>追旅思</rb>
+                            <rt>zhuī lǚ sī</rt>
+                        </ruby>，<ruby>
+                            <rb>夜夜除非</rb>
+                            <rt>yè yè chú fēi</rt>
+                        </ruby>，<ruby>
+                            <rb>好梦留人睡</rb>
+                            <rt>hǎo mèng liú rén shuì</rt>
+                        </ruby>。<ruby>
+                            <rb>明月楼高休独倚</rb>
+                            <rt>míng yuè lóu gāo xiū dú yǐ</rt>
+                        </ruby>，<ruby>
+                            <rb>酒入愁肠</rb>
+                            <rt>jiǔ rù chóu cháng</rt>
+                        </ruby>，<ruby>
+                            <rb>化作相思泪</rb>
+                            <rt>huà zuò xiāng sī lèi</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        The sky is blue with clouds, the ground covered in leaves yellowed,<br>
+                        To the water's edge spread autumn colours, cold mist hovers over green waters.<br>
+                        The setting sun reflects off mountain ranges, the sky and waters a picture paint,<br>
+                        Grass feels not, more of it grows beyond the setting sun like uninhibited nostalgia.<br>
+                        <br>
+                        Drowning in homesickness, depressed by my time on the road,<br>
+                        Sleepless are nights, unless sweet dreams find me to some rest provide.<br>
+                        Leaning over railings atop a tower to the moon admire is not for those alone,<br>
+                        For a drink of spirits down a saddened soul makes wistful tears flow.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/苏幕遮_怀旧_2_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/苏幕遮_怀旧_2_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>一剪梅·红藕香残玉簟秋（李清照）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>红藕香残玉簟秋</rb>
+                            <rt>hóng ǒu xiāng cán yù diàn qiū</rt>
+                        </ruby>。<ruby>
+                            <rb>轻解罗裳</rb>
+                            <rt>qīng jiě luó cháng</rt>
+                        </ruby>，<ruby>
+                            <rb>独上兰舟</rb>
+                            <rt>dú shàng lán zhōu</rt>
+                        </ruby>。<ruby>
+                            <rb>云中谁寄锦书来</rb>
+                            <rt>yún zhōng shuí jì jǐn shū lái</rt>
+                        </ruby>，<ruby>
+                            <rb>雁字回时</rb>
+                            <rt>yàn zì huí shí</rt>
+                        </ruby>，<ruby>
+                            <rb>月满西楼</rb>
+                            <rt>yuè mǎn xī lóu</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>花自飘零水自流</rb>
+                            <rt>huā zì piāo líng shuǐ zì liú</rt>
+                        </ruby>。<ruby>
+                            <rb>一种相思</rb>
+                            <rt>yī zhǒng xiāng sī</rt>
+                        </ruby>，<ruby>
+                            <rb>两处闲愁</rb>
+                            <rt>liǎng chù xián chóu</rt>
+                        </ruby>。<ruby>
+                            <rb>此情无计可消除</rb>
+                            <rt>cǐ qíng wú jì kě xiāo chú</rt>
+                        </ruby>，<ruby>
+                            <rb>才下眉头</rb>
+                            <rt>cái xià méi tóu</rt>
+                        </ruby>，<ruby>
+                            <rb>却上心头</rb>
+                            <rt>què shàng xīn tóu</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        Fragrant pink lotus fade; autumn chills mat ofjade.<br>
+
+                        My silk robe doffed, I float<br>
+
+                        Alone in orchid boat,<br>
+
+                        Who in the cloud would bring me letters inbrocade?<br>
+
+                        When swans come back in flight,<br>
+
+                        My bower’ S steeped in moonlight.<br>
+                        <br>
+                        As fallen flowers drift and water runs their way.<br>
+
+                        One longing overflows<br>
+
+                        Two places with same woes.<br>
+
+                        Such sorrow can by no means be driven away.<br>
+
+                        From eyebrows kept apart,<br>
+
+                        Again it gnaws my heart.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/一剪梅_红藕香残玉簟秋_4_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/一剪梅_红藕香残玉簟秋_4_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>浪淘沙令·帘外雨潺潺（李煜）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>帘外雨潺潺</rb>
+                            <rt>lián wài yǔ chán chán</rt>
+                        </ruby>，<ruby>
+                            <rb>春意阑珊</rb>
+                            <rt>chūn yì lán shān</rt>
+                        </ruby>。<ruby>
+                            <rb>罗衾不耐五更寒</rb>
+                            <rt>luó qīn bù nài wǔ gēng hán</rt>
+                        </ruby>。<ruby>
+                            <rb>梦里不知身是客</rb>
+                            <rt>mèng lǐ bù zhī shēn shì kè</rt>
+                        </ruby>，<ruby>
+                            <rb>一晌贪欢</rb>
+                            <rt>yī shǎng tān huān</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>独自莫凭栏</rb>
+                            <rt>dú zì mò píng lán</rt>
+                        </ruby>，<ruby>
+                            <rb>无限江山</rb>
+                            <rt>wú xiàn jiāng shān</rt>
+                        </ruby>。<ruby>
+                            <rb>别时容易见时难</rb>
+                            <rt>bié shí róng yì jiàn shí nán</rt>
+                        </ruby>。<ruby>
+                            <rb>流水落花春去也</rb>
+                            <rt>liú shuǐ luò huā chūn qù yě</rt>
+                        </ruby>，<ruby>
+                            <rb>天上人间</rb>
+                            <rt>tiān shàng rén jiān</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        The curtain cannot keep out the patter of rain,<br>
+
+                        Springtime is on the wane.<br>
+
+                        In the deep of the night my quilt is not cold-proof.<br>
+
+                        Forgetting I am under hospitable roof,<br>
+
+                        Still in my dream I seek for pleasures vain.<br>
+                        <br>
+                        Don’t lean alone on the railings and<br>
+
+                        Yearn for the boundless land!<br>
+
+                        To bid farewell is easier than to meet again.<br>
+
+                        With flowers fallen on the waves spring’s gone amain,<br>
+
+                        So is the paradise of men.
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/浪淘沙令_帘外雨潺潺_1_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/浪淘沙令_帘外雨潺潺_1_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>玉楼春·尊前拟把归期说（欧阳修）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>尊前拟把归期说</rb>
+                            <rt>zūn qián nǐ bǎ guī qī shuō</rt>
+                        </ruby>，<ruby>
+                            <rb>欲语春容先惨咽</rb>
+                            <rt>yù yǔ chūn róng xiān cǎn yè</rt>
+                        </ruby>。<ruby>
+                            <rb>人生自是有情痴</rb>
+                            <rt>rén shēng zì shì yǒu qíng chī</rt>
+                        </ruby>，<ruby>
+                            <rb>此恨不关风与月</rb>
+                            <rt>cǐ hèn bù guān fēng yǔ yuè</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>离歌且莫翻新阕</rb>
+                            <rt>lí gē qiě mò fān xīn què</rt>
+                        </ruby>，<ruby>
+                            <rb>一曲能教肠寸结</rb>
+                            <rt>yī qū néng jiào cháng cùn jié</rt>
+                        </ruby>。<ruby>
+                            <rb>直须看尽洛城花</rb>
+                            <rt>zhí xū kàn jǐn luò chéng huā</rt>
+                        </ruby>，<ruby>
+                            <rb>始共春风容易别</rb>
+                            <rt>shǐ gòng chūn fēng róng yì bié</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        In front of wine I’ll tell you of my parting day;<br>
+
+                        Your vernal face dissolves in tears before I say.<br>
+
+                        Lovers are born with sentimental feeling heart;<br>
+
+                        Nor moon nor wind has taken in their grief a part.<br>
+                        <br>
+                        Don’t set to a new tune the parting song!<br>
+
+                        The old has tied our hearts in knots for long.<br>
+
+                        Until we have seen all flowers on the trees,<br>
+
+                        It’s hard to bid goodbye to vernal breeze.<br>
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/玉楼春_尊前拟把归期说_5_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/玉楼春_尊前拟把归期说_5_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+
+                <h4>木兰花·拟古决绝词柬友（纳兰性德）</h4>
+                <blockquote>
+                    <div style="margin-bottom: -15px;"><ruby>
+                            <rb>人生若只如初见</rb>
+                            <rt>rén shēng ruò zhǐ rú chū jiàn</rt>
+                        </ruby>，<ruby>
+                            <rb>何事秋风悲画扇</rb>
+                            <rt>hé shì qiū fēng bēi huà shàn</rt>
+                        </ruby>。<ruby>
+                            <rb>等闲变却故人心</rb>
+                            <rt>děng xián biàn què gù rén xīn</rt>
+                        </ruby>，<ruby>
+                            <rb>却道故人心易变</rb>
+                            <rt>què dào gù rén xīn yì biàn</rt>
+                        </ruby>。</div><br>
+                    <div><ruby>
+                            <rb>骊山语罢清宵半</rb>
+                            <rt>lí shān yǔ bà qīng xiāo bàn</rt>
+                        </ruby>，<ruby>
+                            <rb>泪雨霖铃终不怨</rb>
+                            <rt>lèi yǔ lín líng zhōng bù yuàn</rt>
+                        </ruby>。<ruby>
+                            <rb>何如薄幸锦衣郎</rb>
+                            <rt>hé rú bō xìng jǐn yī láng</rt>
+                        </ruby>，<ruby>
+                            <rb>比翼连枝当日愿</rb>
+                            <rt>bǐ yì lián zhī dāng rì yuàn</rt>
+                        </ruby>。</div>
+                    <h5>English Translation</h5>
+                    <div>
+                        If life could be all the same<br>
+                        As when I knew your name,<br>
+                        Why would the wind waul<br>
+                        For the fan forsaken in Fall?<br>
+                        Without rime or reason told<br>
+                        His heart went stone-cold.<br>
+                        But he said without shame,<br>
+                        "The Fickleness is to blame."<br>
+                        <br>
+                        Upon Mount Li of mid-night<br>
+                        They did their troth plight;<br>
+                        Till death she's ne'er loath'd<br>
+                        The man in fine robes cloth'd.<br>
+                        "May we be a pair of Birds,"<br>
+                        To her he's given his words,<br>
+                        Words said with love so deep,<br>
+                        Yet he finally failed to keep.<br>
+                    </div>
+                    <h5>Melody</h5>
+                    <iframe src="resource/木兰花_拟古决绝词柬友_1_melody.pdf" width="700px" height="600px"></iframe>
+                    <h5>Singing + Accompaniment</h5>
+                    <audio controls>
+                        <source src="resource/木兰花_拟古决绝词柬友_1_full.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </blockquote>
+            </blockquote>
+        </div>
+    </div>
+</body>
+
+</html>
